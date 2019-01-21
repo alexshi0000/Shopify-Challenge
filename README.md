@@ -67,5 +67,5 @@ curl -X GET localhost:3000/api/fetch-all/true    #fetches all products with inve
 ### Purchasing Products
 - use the following commands to purchase items
 ```bash
-curl -X POST localhost:3000/api/purchase/product_id
+curl -X POST localhost:3000/api/purchase/product_id #replace product_id
 ```
