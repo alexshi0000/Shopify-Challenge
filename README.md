@@ -59,13 +59,13 @@ and each product in the array has a title, price, and inventory\_count
 ### Fetching Products
 - use the following commands to test fetching items
 ```bash
-curl -X GET localhost:3000/api/fetch/product_id  #replace product_id to fetch single item
-curl -X GET localhost:3000/api/fetch-all/false   #fetches all products
-curl -X GET localhost:3000/api/fetch-all/true    #fetches all products with inventory
+curl -X GET localhost:3000/api/fetch/title     #replace title to fetch single item
+curl -X GET localhost:3000/api/fetch-all/false #fetches all products
+curl -X GET localhost:3000/api/fetch-all/true  #fetches all products with inventory
 ```
 
 ### Purchasing Products
 - use the following commands to purchase items
 ```bash
-curl -X POST localhost:3000/api/purchase/product_id #replace product_id
+curl -X POST localhost:3000/api/purchase/title #replace title
 ```
