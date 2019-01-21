@@ -1,5 +1,10 @@
 # Shopify-Challenge
 My Summer 2019 Developer Intern Challenge for Shopify
+Author: Alex (Yu An) Shi
+Student ID: 20765342
+Program: University of Waterloo, Honours Computer Science (Co-op)
+
+After you are done here, feel free to check out my other projects!
 
 ## Task Checklist: Build the barebones of an online marketplace
 
@@ -31,13 +36,13 @@ cd Shopify-Challenge
 ```
 
 - make sure you have the latest stable version for npm and nvm
-- make sure to run the following command
+- run the following command
 ```bash
 nvm use 10 #or newer version
 ```
 
 ## Running the Demo Pages
 
-## Buyer (adding products to marketplace)
+### Buyer (adding products to marketplace)
 
-## Seller (buying products from marketplace)
+### Seller (buying products from marketplace)
