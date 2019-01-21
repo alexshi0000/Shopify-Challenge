@@ -14,7 +14,7 @@ app.get('/api/fetch/:id', (req, res) => {
       throw err;
     var dbo = db.db('marketplace');
     var query = { title: req.params.id };
-    dbo.collection('products').find(query, { _id : 0 }).toArray((err, result) => {
+    dbo.collection('products').find(query, {projection: { _id : 0 }}).toArray((err, result) => {
       if (err)
         throw err;
       if (result.length != 0) {
@@ -82,6 +82,34 @@ app.get('/api/fetch-all/:filter', (req, res) => {
   })
 });
 
+app.post('/api/purchase/:product_id', (req, res) => {
+  console.log('attempting to purchase ' + req.params.product_id);
+
+  MongoClient.connect(url, (err, db) => {
+    if (err)
+      throw err;
+
+    var dbo = db.db('marketplace');
+    var query = { title : req.params.product_id }; //query all
+
+    dbo.collection('products').find(query, {projection: { _id : 0 }}).toArray((err, result) => {
+      if (err)
+        throw err;
+
+      if (result.length > 0 && result[0].inventory_count > 0) {
+        console.log('purchase made!');
+
+        dbo.collection('products').update(query, {$inc : { inventory_count : -1}});
+        res.status(400).json(result[0]); //success
+      }
+      else {
+        console.log('invalid purchase made, either no such product, or no inventory');
+        res.status(200).json( { error:"no such product or no inventory" } );
+      }
+      db.close();
+    });
+  });
+});
 
 http.listen(3000, () => {
   console.log('server is running, now accepting requests');
@@ -102,4 +130,9 @@ http.listen(3000, () => {
   console.log();
   console.log('  - curl -X GET localhost:3000/api/fetch-all/true');
   console.log('    filters fetch-all to only include products with inventory');
+
+  console.log();
+  console.log('use the following commands to purchase items:');
+  console.log('  - curl -X POST localhost:3000/api/purchase/product_id');
 });
+
