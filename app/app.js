@@ -100,7 +100,10 @@ app.post('/api/purchase/:product_id', (req, res) => {
         console.log('purchase made!');
 
         dbo.collection('products').update(query, {$inc : { inventory_count : -1}});
-        res.status(400).json(result[0]); //success
+        dbo.collection('products').find(query, {projection: { _id : 0 }}).toArray((err, result) => {
+          if (err) throw err
+          res.status(400).json(result[0]); //success
+        });
       }
       else {
         console.log('invalid purchase made, either no such product, or no inventory');
