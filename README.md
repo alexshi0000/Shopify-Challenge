@@ -63,6 +63,7 @@ npm start
 ```
 
 ### Fetching Products
+- Open another terminal
 - use the following commands to test fetching items
 ```bash
 curl -X GET localhost:3000/api/fetch/title     #replace title to fetch single item
