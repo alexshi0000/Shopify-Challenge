@@ -42,7 +42,17 @@ cd Shopify-Challenge
 nvm use 10 #or newer version
 ```
 
+## Using the Server
+
+### Adding Products
+
+### Fetching Products
+
+
 ## Running the Demo Pages
+I made two demo pages with front end just for fun. If you find any bugs
+or errors (hopefully not :P) feel free to open an issue in this repo
+and I will try my best to fix the problem ASAP.
 
 ### Buyer (adding products to marketplace)
 
