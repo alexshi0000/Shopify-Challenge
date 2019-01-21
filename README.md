@@ -1,11 +1,11 @@
 # Shopify-Challenge
 My Summer 2019 Developer Intern Challenge for Shopify
 
-_Author_:  Alex (Yu An) Shi<br>
-_Student_: ID: 20765342<br>
-_Program_: University of Waterloo, Honours Computer Science (Co-op)
+**Author**:  Alex (Yu An) Shi<br>
+**Student**: ID: 20765342<br>
+**Program**: University of Waterloo, Honours Computer Science (Co-op)
 
-After you are done here, feel free to check out my other projects!
+After you are done with the following, feel free to check out my other projects!
 
 ## Task Checklist: Build the barebones of an online marketplace
 
