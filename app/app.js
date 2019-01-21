@@ -14,7 +14,7 @@ app.get('/api/fetch/:id', (req, res) => {
       throw err;
     var dbo = db.db('marketplace');
     var query = { title: req.params.id };
-    dbo.collection('products').find(query).toArray((err, result) => {
+    dbo.collection('products').find(query, { _id : 0 }).toArray((err, result) => {
       if (err)
         throw err;
       if (result.length != 0) {
@@ -38,11 +38,11 @@ app.get('/api/fetch-all/:filter', (req, res) => {
       throw err;
     var dbo = db.db('marketplace');
     var query = {}; //query all
-    if (req.params.filter == 'true')
+    if (req.params.filter === 'true')
       //if we should filter the items with no inventory
       query = { inventory_count: {$gt: 0} }
 
-    dbo.collection('products').find(query).toArray((err, result) => {
+    dbo.collection('products').find(query, {projection: { _id : 0 }}).toArray((err, result) => {
       if (err)
         throw err;
       if (result.length != 0) {
@@ -62,15 +62,15 @@ http.listen(3000, () => {
   console.log('server is running, now accepting requests');
   console.log('endpoint at: http://localhost:3000/');
   console.log();
-  console.log('use the following commands to fetch:');
+  console.log('use the following commands to fetch items:');
 
   console.log('  - curl -X GET localhost:3000/api/fetch/product_id');
   console.log('    replacing product_id with the product');
 
 
   console.log();
-  console.log('  - curl -X GET localhost:3000/api/fetch-all');
-  console.log('    instead of fetching one product, fetches all');
+  console.log('  - curl -X GET localhost:3000/api/fetch-all/false');
+  console.log('    instead of fetching one product, fetches all products');
 
   console.log();
   console.log('  - curl -X GET localhost:3000/api/fetch-all/true');
