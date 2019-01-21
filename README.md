@@ -22,8 +22,14 @@ brew install mongodb
 
 - clone this repo
 ```
-git clone somerepo
+git clone https://github.com/alexshi0000/Shopify-Challenge
 ```
+
+- navigate to the folder
+```
+cd Shopify-Challenge
+```
+
 - make sure you have the latest stable version for npm and nvm
 - make sure to run the following command
 ```bash
