@@ -12,8 +12,8 @@ After you are done with the following, feel free to check out my other projects!
 - [x] build a server side web api that can be used to fetch products either one at a time or all at once
 - [x] Every product should have a title, price, and inventory\_count
 - [x] Querying for all products should support passing an arguement to only return products with available inventory
-- [ ] Products should be able to be "purchased" which should reduce the inventory by 1.
-- [ ] Products with no inventory cannot be purchased.
+- [x] Products should be able to be "purchased" which should reduce the inventory by 1.
+- [x] Products with no inventory cannot be purchased.
 
 ## Setup Server
 - make sure mongodb is installed using the package manager of your choice
@@ -50,13 +50,22 @@ npm run populate_market
 ```
 - note: If you would like to use different products then you can provide a json in
 place of app/products.json. Just make sure that the array name is "productArr"
-and each product has a title, price, and inventory\_count
+and each product in the array has a title, price, and inventory\_count
 
 - Now you are all set up and ready to go!
 
 ## Using the Server Api
 
-### Adding Products
-
 ### Fetching Products
+- use the following commands to test fetching items
+```bash
+curl -X GET localhost:3000/api/fetch/product_id  #replace product_id to fetch single item
+curl -X GET localhost:3000/api/fetch-all/false   #fetches all products
+curl -X GET localhost:3000/api/fetch-all/true    #fetches all products with inventory
+```
 
+### Purchasing Products
+- use the following commands to purchase items
+```bash
+curl -X POST localhost:3000/api/purchase/product_id
+```
