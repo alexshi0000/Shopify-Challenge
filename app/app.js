@@ -30,7 +30,7 @@ app.get('/api/fetch/:id', (req, res) => {
   });
 });
 
-app.get('/api/fetch-all', (req, res) => {
+app.get('/api/fetch-all/:filter', (req, res) => {
   console.log("fetching-all");
 
   MongoClient.connect(url, (err, db) => {
@@ -38,7 +38,11 @@ app.get('/api/fetch-all', (req, res) => {
       throw err;
     var dbo = db.db('marketplace');
     var query = {}; //query all
-    dbo.collection('products').find({}).toArray((err, result) => {
+    if (req.params.filter == 'true')
+      //if we should filter the items with no inventory
+      query = { inventory_count: {$gt: 0} }
+
+    dbo.collection('products').find(query).toArray((err, result) => {
       if (err)
         throw err;
       if (result.length != 0) {
@@ -62,7 +66,13 @@ http.listen(3000, () => {
 
   console.log('  - curl -X GET localhost:3000/api/fetch/product_id');
   console.log('    replacing product_id with the product');
+
+
   console.log();
   console.log('  - curl -X GET localhost:3000/api/fetch-all');
   console.log('    instead of fetching one product, fetches all');
+
+  console.log();
+  console.log('  - curl -X GET localhost:3000/api/fetch-all/true');
+  console.log('    filters fetch-all to only include products with inventory');
 });
