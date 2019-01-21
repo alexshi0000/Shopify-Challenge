@@ -9,8 +9,8 @@ After you are done with the following, feel free to check out my other projects!
 
 ## Task Checklist: Build the barebones of an online marketplace
 
-- [ ] build a server side web api that can be used to fetch products either one at a time or all at once
-- [ ] Every product should have a title, price, and inventory\_count
+- [x] build a server side web api that can be used to fetch products either one at a time or all at once
+- [x] Every product should have a title, price, and inventory\_count
 - [ ] Querying for all products should support passing an arguement to only return products with available inventory
 - [ ] Products should be able to be "purchased" which should reduce the inventory by 1.
 - [ ] Products with no inventory cannot be purchased.
