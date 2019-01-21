@@ -42,18 +42,21 @@ cd Shopify-Challenge
 nvm use 10 #or newer version
 ```
 
-## Using the Server
+## Setup DB
+- creating and initializing DB
+```
+npm run create_market
+npm run populate_market
+```
+note: If you would like to use different products then you can provide a json in
+place of app/products.json. Just make sure that the array name is "productArr"
+and each product has a title, price, and inventory\_count
+
+Now you are all set up and ready to go!
+
+## Using the Server Api
 
 ### Adding Products
 
 ### Fetching Products
 
-
-## Running the Demo Pages
-I made two demo pages with front end just for fun. If you find any bugs
-or errors (hopefully not :P) feel free to open an issue in this repo
-and I will try my best to fix the problem ASAP.
-
-### Buyer (adding products to marketplace)
-
-### Seller (buying products from marketplace)

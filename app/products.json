@@ -1,0 +1,24 @@
+{
+  "productArr" : [
+    {
+      "title" : "apple",
+      "price" : 1.24,
+      "inventory_count" : 2
+    },
+    {
+      "title" : "orange",
+      "price" : 2.50,
+      "inventory_count" : 3
+    },
+    {
+      "title" : "mango",
+      "price" : 1.75,
+      "inventory_count" : 4
+    },
+    {
+      "title" : "banana",
+      "price" : 5.24,
+      "inventory_count" : 1
+    }
+  ]
+}
