@@ -37,6 +37,7 @@ cd Shopify-Challenge
 ```
 
 - make sure you have the latest stable version for npm and nvm
+- https://github.com/creationix/nvm
 - run the following command
 ```bash
 nvm use 10 #or newer version
