@@ -1,7 +1,7 @@
 # Shopify-Challenge
-My Summer 2019 Developer Intern Challenge for Shopify
-Author: Alex (Yu An) Shi
-Student ID: 20765342
+My Summer 2019 Developer Intern Challenge for Shopify<br>
+Author: Alex (Yu An) Shi<br>
+Student ID: 20765342<br>
 Program: University of Waterloo, Honours Computer Science (Co-op)
 
 After you are done here, feel free to check out my other projects!
