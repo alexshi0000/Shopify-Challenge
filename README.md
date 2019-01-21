@@ -15,7 +15,7 @@ My Summer 2019 Developer Intern Challenge for Shopify
 ```
 sudo apt install mongodb
 ```
-- and on mac(make sure to install brew if you dont already have it):
+- and on mac:
 ```
 brew install mongodb
 ```
