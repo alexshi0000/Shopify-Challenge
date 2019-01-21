@@ -19,6 +19,16 @@
       "title" : "banana",
       "price" : 5.24,
       "inventory_count" : 1
+    },
+    {
+      "title" : "grapes",
+      "price" : 10.00,
+      "inventory_count" : 0
+    },
+    {
+      "title" : "lemons",
+      "price" : 3.75,
+      "inventory_count" : 10
     }
   ]
 }
