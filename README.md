@@ -10,10 +10,16 @@ My Summer 2019 Developer Intern Challenge for Shopify
 - [ ] Products with no inventory cannot be purchased.
 
 ## Setup Server
-- make sure mongodb is installed, for example on Ubuntu
+- make sure mongodb is installed using the package manager of your choice
+- for example on Ubuntu you would type:
 ```
 sudo apt install mongodb
 ```
+- and on mac(make sure to install brew if you dont already have it):
+```
+brew install mongodb
+```
+
 - clone this repo
 ```
 git clone somerepo
