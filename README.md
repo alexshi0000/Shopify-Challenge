@@ -48,11 +48,11 @@ nvm use 10 #or newer version
 npm run create_market
 npm run populate_market
 ```
-note: If you would like to use different products then you can provide a json in
+- note: If you would like to use different products then you can provide a json in
 place of app/products.json. Just make sure that the array name is "productArr"
 and each product has a title, price, and inventory\_count
 
-Now you are all set up and ready to go!
+- Now you are all set up and ready to go!
 
 ## Using the Server Api
 
