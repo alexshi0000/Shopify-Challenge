@@ -57,6 +57,11 @@ and each product in the array has a title, price, and inventory\_count
 
 ## Using the Server Api
 
+### Run
+```
+npm start
+```
+
 ### Fetching Products
 - use the following commands to test fetching items
 ```bash
