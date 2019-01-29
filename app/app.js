@@ -114,6 +114,44 @@ app.post('/api/purchase/:product_id', (req, res) => {
   });
 });
 
+/*
+ * we need to design a model for how the cart is going to work
+ * shopping cart:
+ *   - cart name (could be a hash, customer_id, not determined by api implementation)
+ *   - products added
+ *   - running sum of total cost
+ */
+
+app.post('/api/cart/create/:cart_id', (req, res) => {
+  console.log('attempting to create a cart with id ' + req.params.cart_id);
+  MongoClient.connect(url, (err, db) => {
+    if (err)
+      return err;
+    var dbo = db.db('marketplace');
+    var new_cart = {
+      cart_id: req.params.cart_id,
+      products: [],
+      sum: 0.0
+    };
+    dbo.collection('marketplace').insertOne(new_cart, (err, res) => {
+      if (err)
+        throw err;
+
+      console.log("shopping cart has been added");
+      db.close();
+    });
+  });
+});
+
+/*
+ * we need to create POST api methods for adding products to cart
+ * and checkout
+ */
+
+app.post('/api/fetch-cart/:cart_id', (req, res) => {
+  console.log("attempting..."); //TODO attempting to do what?
+});
+
 http.listen(3000, () => {
   console.log('server is running, now accepting requests');
   console.log('endpoint at: http://localhost:3000/');
@@ -137,5 +175,9 @@ http.listen(3000, () => {
   console.log();
   console.log('use the following commands to purchase items:');
   console.log('  - curl -X POST localhost:3000/api/purchase/product_id');
+
+  console.log();
+  console.log('use the following commands to manipulate shopping carts');
+  console.log('  = curl -X POST localhost:3000/api/cart/create/cart_id');
 });
 
