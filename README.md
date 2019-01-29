@@ -2,7 +2,6 @@
 My Summer 2019 Developer Intern Challenge for Shopify
 
 **Author**:  Alex (Yu An) Shi<br>
-**Student**: ID: 20765342<br>
 **Program**: University of Waterloo, Honours Computer Science (Co-op)
 
 After you are done with the following, feel free to check out my other projects!
@@ -14,6 +13,16 @@ After you are done with the following, feel free to check out my other projects!
 - [x] Querying for all products should support passing an arguement to only return products with available inventory
 - [x] Products should be able to be "purchased" which should reduce the inventory by 1.
 - [x] Products with no inventory cannot be purchased.
+
+## Next Steps:
+
+- [ ] Fit product purchases into the context of a simple shopping cart
+- [ ] Cart creation
+- [ ] Adding products to the cart
+- [ ] Items with no inventory cannot be added to cart
+- [ ] Completing the cart
+- [ ] List included products, a total dollar amount
+- [ ] Product inventory decrease after cart is completed
 
 ## Setup Server
 - make sure mongodb is installed using the package manager of your choice
