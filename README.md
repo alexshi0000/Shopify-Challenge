@@ -16,13 +16,11 @@ After you are done with the following, feel free to check out my other projects!
 
 ## Next Steps:
 
-- [ ] Fit product purchases into the context of a simple shopping cart
-- [ ] Cart creation
+- [x] Cart creation
 - [ ] Adding products to the cart
 - [ ] Items with no inventory cannot be added to cart
-- [ ] Completing the cart
-- [ ] List included products, a total dollar amount
-- [ ] Product inventory decrease after cart is completed
+- [ ] Cart list included products, and also total dollar amount
+- [ ] Product inventory decrease after checking out
 
 ## Setup Server
 - make sure mongodb is installed using the package manager of your choice
