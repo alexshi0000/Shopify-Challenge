@@ -53,6 +53,10 @@ nvm use 10 #or newer version
 ```
 
 ## Setup DB
+- install dependencies (express and mongodb)
+```
+npm install
+```
 - creating and initializing DB
 ```
 npm run create_market
