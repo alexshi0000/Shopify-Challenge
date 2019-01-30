@@ -102,6 +102,8 @@ app.post('/api/purchase/:product_id', (req, res) => {
  *   - cart name (could be a hash, customer_id, not determined by api implementation)
  *   - products added
  *   - running sum of total cost
+ *
+ * POST
  */
 
 app.post('/api/cart/create/:cart_id', (req, res) => {
@@ -131,9 +133,11 @@ app.post('/api/cart/create/:cart_id', (req, res) => {
 /*
  * we need to create POST api methods for adding products to cart
  * and checkout
+ *
+ * GET
  */
 
-app.post('/api/cart/fetch/:cart_id', (req, res) => {
+app.get('/api/cart/fetch/:cart_id', (req, res) => {
   console.log("attempting to fetch items in shopping cart: " + req.params.cart_id);
   MongoClient.connect(url, (err, db) => {
     if (err)
@@ -156,6 +160,18 @@ app.post('/api/cart/fetch/:cart_id', (req, res) => {
     });
   });
 });
+
+// POST: adding products to cart
+
+app.post('api/cart/add/:product_id/:cart_id', (req, res) => {
+  console.log('addding ' + req.params.product_id
+    + ' to ' + ' cart: ' + req.params.cart_id);
+
+  // TODO continue off here
+});
+
+
+// ========================= HTTP SERVER =======================================
 
 http.listen(3000, () => {
   console.log('server is running, now accepting requests');
@@ -185,6 +201,6 @@ http.listen(3000, () => {
   console.log('    fetch shopping cart with the id, cart_id');
 
   console.log();
-  console.log('================ LOG ==============');
+  console.log('======================== SERVER LOG ==========================');
 });
 
