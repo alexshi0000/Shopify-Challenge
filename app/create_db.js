@@ -11,7 +11,7 @@ MongoClient.connect(url, function(err, db) {
     dbo.createCollection('shoppingCart', (err, res) => {
       if (err)
         throw err;
-      console.log('shopping cart listing created');
+      console.log('shopping cart listing created!');
       db.close();
     })
   };
