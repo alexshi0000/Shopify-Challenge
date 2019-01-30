@@ -87,3 +87,11 @@ curl -X GET localhost:3000/api/fetch-all/true  #fetches all products with invent
 ```bash
 curl -X POST localhost:3000/api/purchase/title #replace title
 ```
+
+### Shopping Carts
+- use the following command to manipulate shopping carts
+```bash
+curl -X POST localhost:3000/api/cart/create/cart_id #replace cart_id with id hash
+curl -X GET localhost:3000/api/cart/fetch/cart_id   #responds with json with cart_id
+```
+- **NOTE**: cart\_id implementation should be unique for best results
