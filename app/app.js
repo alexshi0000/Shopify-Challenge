@@ -6,6 +6,8 @@ var http    = require('http').Server(app)
 var MongoClient = require('mongodb').MongoClient;
 var url         = "mongodb://localhost:27017/";
 
+//=================== FETCHING =================================================
+
 app.get('/api/fetch/:id', (req, res) => {
   console.log("fetching " + req.params.id);
 
@@ -28,30 +30,6 @@ app.get('/api/fetch/:id', (req, res) => {
       db.close();
     });
   });
-});
-
-app.get('/api/fetch-all', (req, res) => {
-  console.log("fetching-all");
-
-  MongoClient.connect(url, (err, db) => {
-    if (err)
-      throw err;
-    var dbo = db.db('marketplace');
-
-    dbo.collection('products').find({}, {projection: { _id : 0 }}).toArray((err, result) => {
-      if (err)
-        throw err;
-      if (result.length != 0) {
-        console.log('found all');
-        res.status(200).json(result);
-      }
-      else {
-        console.log('no products in marketplace');
-        res.status(400).json( { error:"no products found" } );
-      }
-      db.close();
-    });
-  })
 });
 
 app.get('/api/fetch-all/:filter', (req, res) => {
@@ -81,6 +59,8 @@ app.get('/api/fetch-all/:filter', (req, res) => {
     });
   })
 });
+
+// ======================== PURCHASING =========================================
 
 app.post('/api/purchase/:product_id', (req, res) => {
   console.log('attempting to purchase ' + req.params.product_id);
@@ -114,6 +94,8 @@ app.post('/api/purchase/:product_id', (req, res) => {
   });
 });
 
+//========================= SHOPPING CART ======================================
+
 /*
  * we need to design a model for how the cart is going to work
  * shopping cart:
@@ -126,18 +108,21 @@ app.post('/api/cart/create/:cart_id', (req, res) => {
   console.log('attempting to create a cart with id ' + req.params.cart_id);
   MongoClient.connect(url, (err, db) => {
     if (err)
-      return err;
+      throw err;
     var dbo = db.db('marketplace');
     var new_cart = {
       cart_id: req.params.cart_id,
       products: [],
       sum: 0.0
     };
-    dbo.collection('marketplace').insertOne(new_cart, (err, res) => {
-      if (err)
+    dbo.collection('shoppingCart').insertOne(new_cart, (err, result) => {
+      if (err) {
+        res.status(400).json({error:'cart could not be added'});
         throw err;
+      }
 
       console.log("shopping cart has been added");
+      res.status(200).json(); //success
       db.close();
     });
   });
@@ -148,8 +133,28 @@ app.post('/api/cart/create/:cart_id', (req, res) => {
  * and checkout
  */
 
-app.post('/api/fetch-cart/:cart_id', (req, res) => {
-  console.log("attempting..."); //TODO attempting to do what?
+app.post('/api/cart/fetch/:cart_id', (req, res) => {
+  console.log("attempting to fetch items in shopping cart: " + req.params.cart_id);
+  MongoClient.connect(url, (err, db) => {
+    if (err)
+      throw err;
+    var dbo = db.db('marketplace');
+    var query = { cart_id: req.params.cart_id };
+    dbo.collection('shoppingCart').find(query,
+      { projection: { _id : 0 } }).toArray((err, result) => { //async result
+        if (result.length == 0) {
+          res.status(400).json({ error : 'cannot find such cart' }); //failure
+        }
+        else if (err) {
+          res.status(400).json({ error : 'some error was thrown during find' }); //failure
+          throw err;
+        }
+        else {
+          res.status(200).json(result);
+        }
+        db.close();
+    });
+  });
 });
 
 http.listen(3000, () => {
@@ -157,17 +162,12 @@ http.listen(3000, () => {
   console.log('endpoint at: http://localhost:3000/');
 
   console.log();
-
   console.log('use the following commands to fetch items:');
-
   console.log('  - curl -X GET localhost:3000/api/fetch/product_id');
   console.log('    replacing product_id with the product');
-
   console.log();
-
   console.log('  - curl -X GET localhost:3000/api/fetch-all/false');
   console.log('    instead of fetching one product, fetches all products');
-
   console.log();
   console.log('  - curl -X GET localhost:3000/api/fetch-all/true');
   console.log('    filters fetch-all to only include products with inventory');
@@ -178,6 +178,13 @@ http.listen(3000, () => {
 
   console.log();
   console.log('use the following commands to manipulate shopping carts');
-  console.log('  = curl -X POST localhost:3000/api/cart/create/cart_id');
+  console.log('  - curl -X POST localhost:3000/api/cart/create/cart_id');
+  console.log('    create a shopping cart with id, cart_id');
+  console.log();
+  console.log('  - curl -X GET localhost:3000/api/cart/fetch/cart_id');
+  console.log('    fetch shopping cart with the id, cart_id');
+
+  console.log();
+  console.log('================ LOG ==============');
 });
 
